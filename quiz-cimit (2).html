@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Who Knows Cimit Best?</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fceef5;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .box {
+            background: white;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px #d8b8c8;
+        }
+
+        h1 {
+            color: #d45b8c;
+        }
+
+        .question {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        button {
+            display: block;
+            width: 90%;
+            margin: 12px auto;
+            padding: 12px;
+            border: none;
+            border-radius: 15px;
+            background: #f3b6ce;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #e995b7;
+        }
+
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+            color: #d45b8c;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>🎀 Who Knows Cimit Best? 🎀</h1>
+
+    <p>Seberapa kenal kamu sama Cimit? 👀</p>
+
+    <div id="quiz"></div>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+const questions = [
+    {
+        question: "Kalau aku dikasih kesempatan liburan gratis, aku paling mungkin pilih...?",
+        answers: [
+            "🏖️ pantai",
+            "🏙️ kota besar",
+            "❤️ Korea",
+            "🏡 stay di rumah"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "Hal kecil yang paling gampang bikin aku senang adalah...?",
+        answers: [
+            "💌 dapat kata-kata manis",
+            "🎁 dikasih hadiah",
+            "🍰 ditraktir makanan",
+            "😁 ditemenin ngobrol"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "Tipe cowok yang paling aku suka adalah...?",
+        answers: [
+            "😎 cool, cuek, dan susah ditebak",
+            "🙂 terang-terangan, perhatian, dan ekspresif",
+            "🤪 humoris, usil, dan suka bikin ketawa",
+            "🤫 pendiam, kalem, dan misterius"
+        ],
+        correct: 2
+    },
+
+    {
+    question: "Kalau disuruh pilih satu, aku paling mungkin memilih...?",
+    answers: [
+        "🍛 rendang",
+        "🍕 pizza",
+        "🍔 burger",
+        "🍜 mie ayam"
+    ],
+    correct: 0
+    },
+
+    {
+    question: "Satu kata yang paling menggambarkan sifatku adalah...?",
+    answers: [
+        "ceria",
+        "pendiam",
+        "ambisius",
+        "sensitif"
+    ],
+    correct: 0
+    },
+
+    {
+    question: "Kalau punya satu hari full tanpa tugas, aku paling mungkin...?",
+    answers: [
+        "🛌🏻 rebahan sendirian",
+        "🚶🏻‍♀️ keluar jalan-jalan",
+        "👩🏻‍🎨 melakukan hobi",
+        "🎬 marathon drama"
+    ],
+    correct: 0
+    },
+
+    {
+    question: "Bunga yang paling aku suka adalah...?",
+    answers: [
+        "mawar",
+        "tulip",
+        "matahari",
+        "sakura"
+    ],
+    correct: 1
+    },
+
+    {
+    question: "Minuman yang paling aku suka adalah...?",
+    answers: [
+        "kopi",
+        "thai tea",
+        "matcha",
+        "soda"
+    ],
+    correct: 1
+    },
+ 
+    {
+    question: "Kalau aku lagi senang atau salting, aku kadang tiba-tiba...?",
+    answers: [
+        "muji orang random",
+        "bilang aku sayang kamu ke siapa aja",
+        "ketawa sendiri",
+        "jadi diam"
+    ],
+    correct: 1
+    },
+    
+    {
+    question: "Hal yang paling bikin gampang bikin aku bad mood adalah...?",
+    answers: [
+        "dibales seadanya",
+        "disalahpahami padahal udah dijelasin",
+        "laper",
+        "rencana tiba-tiba berubah"
+    ],
+    correct: 2
+    },
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function showQuestion() {
+
+    const quiz = document.getElementById("quiz");
+
+    if (currentQuestion >= questions.length) {
+        showResult();
+        return;
+    }
+
+    const q = questions[currentQuestion];
+
+    quiz.innerHTML = `
+        <div class="question">${q.question}</div>
+
+        ${q.answers.map((answer, index) =>
+            `<button onclick="checkAnswer(${index})">
+                ${answer}
+            </button>`
+        ).join("")}
+    `;
+}
+
+function checkAnswer(index) {
+
+    if (index === questions[currentQuestion].correct) {
+        score++;
+    }
+
+    currentQuestion++;
+
+    showQuestion();
+}
+
+function showResult() {
+
+    document.getElementById("quiz").innerHTML = "";
+
+    document.getElementById("result").innerHTML = `
+        🎉 QUIZ SELESAI! 🎉
+        <br><br>
+        Skor kamu: ${score} / ${questions.length}
+
+        <br><br>
+
+        <button onclick="location.reload()">
+            🔄 Main Lagi
+        </button>
+    `;
+}
+
+document.getElementById("quiz").innerHTML = `
+    <h2>🌷 Who Knows Cimit Best? 🌷</h2>
+    <p>Seberapa kenal kamu sama aku? 👀</p>
+    <button onclick="showQuestion()">💗 MULAI QUIZ</button>
+`;
+
+</script>
+
+</body>
+</html>
